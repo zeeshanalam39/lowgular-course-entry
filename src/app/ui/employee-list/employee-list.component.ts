@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,5 +14,9 @@ import { EmployeeModel } from '../../model/employee.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeListComponent {
-  data$: Observable<EmployeeModel[] | null> = of(null);
+  data$: Observable<EmployeeModel[] | null> = this._httpClient.get<
+    EmployeeModel[]
+  >('https://eqsfaxnghe.cfolks.pl/assets/data/employees.json');
+
+  constructor(private _httpClient: HttpClient) {}
 }
